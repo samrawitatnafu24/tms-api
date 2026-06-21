@@ -1,6 +1,2 @@
-@Tms_Api_HostAddress = http://localhost:5177
-
-GET {{Tms_Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
+GET http://localhost:5177/api/assessments/results
+X-Training-User: samrawit
