@@ -44,5 +44,4 @@ app.MapGet("/api/assessments/results", () => Results.Ok(new
     letterGrade = "A"
 }))
 .RequireAuthorization(); // Instantly turns away anonymous calls with a 401 response
-
 app.Run();
