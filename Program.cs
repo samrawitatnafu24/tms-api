@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 
@@ -22,6 +23,8 @@ builder.Services.AddOptions<PaymentOptions>()
 // Register clashing service lifetimes to trigger container analysis
 builder.Services.AddSingleton<EnrollmentWorker>();
 builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
+builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
 
 // Turn on explicit framework validation constraints
 builder.Host.UseDefaultServiceProvider(options =>
@@ -39,7 +42,8 @@ var app = builder.Build();
 app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Standard framework behaviors follow
-app.UseExceptionHandler("/error"); // For Session 3 ProblemDetails integration
+app.UseExceptionHandler();
+app.UseStatusCodePages();
 app.UseHttpsRedirection();
 
 app.UseRouting();
@@ -48,6 +52,11 @@ app.UseRouting();
 // and ALWAYS before endpoints run!
 app.UseAuthentication();
 app.UseAuthorization();
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+}
 
 // =========================================================================
 // 3. ENDPOINT DEFINITIONS
