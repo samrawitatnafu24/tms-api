@@ -31,3 +31,5 @@ C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\refint\Tms-Api.dll
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.pdb
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.genruntimeconfig.cache
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\ref\Tms-Api.dll
+C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.sourcelink.json
+C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Scalar.AspNetCore.dll
