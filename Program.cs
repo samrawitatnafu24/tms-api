@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 
@@ -7,11 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // 1. SERVICE REGISTRATION (Dependency Injection)
 // =========================================================================
 builder.Services.AddControllers();
-
+builder.Services.AddControllers();
 // Register the strict security services required by the runtime pipeline
 builder.Services.AddAuthentication("Training")
     .AddScheme<AuthenticationSchemeOptions, TrainingAuthHandler>("Training", null);
 builder.Services.AddAuthorization();
+builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
@@ -22,7 +24,7 @@ app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Standard framework behaviors follow
 app.UseExceptionHandler("/error"); // For Session 3 ProblemDetails integration
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseRouting();
 
@@ -35,7 +37,12 @@ app.UseAuthorization();
 // 3. ENDPOINT DEFINITIONS
 // =========================================================================
 app.MapControllers();
-
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+        
+}
 // Secured placeholder endpoint for Session 1 evaluation
 app.MapGet("/api/assessments/results", () => Results.Ok(new
 {
