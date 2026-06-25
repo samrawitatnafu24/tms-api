@@ -8,6 +8,7 @@ C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Tms-Api.dll
 C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Tms-Api.pdb
 C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Scalar.AspNetCore.dll
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.csproj.AssemblyReference.cache
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\rpswa.dswa.cache.json
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.GeneratedMSBuildEditorConfig.editorconfig
@@ -16,6 +17,7 @@ C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.AssemblyInfo.cs
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.csproj.CoreCompileInputs.cache
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.sourcelink.json
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\rjimswa.dswa.cache.json
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
@@ -31,5 +33,3 @@ C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\refint\Tms-Api.dll
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.pdb
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.genruntimeconfig.cache
 C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\ref\Tms-Api.dll
-C:\Users\abay\documents\Tms-Api\obj\Debug\net10.0\Tms-Api.sourcelink.json
-C:\Users\abay\documents\Tms-Api\bin\Debug\net10.0\Scalar.AspNetCore.dll

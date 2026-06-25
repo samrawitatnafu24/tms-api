@@ -15,8 +15,17 @@ public class TrainingAuthHandler : AuthenticationHandler<AuthenticationSchemeOpt
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        // If the request completely lacks our custom test header, turn them away as unauthenticated
-        if (!Request.Headers.ContainsKey("X-Training-User"))
+    // 1. Bypass authentication for favicon, scalar documentation, and openapi json
+var path = Request.Path.Value ?? "";
+if (path.Contains("favicon.svg", StringComparison.OrdinalIgnoreCase) || 
+    path.StartsWith("/scalar", StringComparison.OrdinalIgnoreCase) || 
+    path.StartsWith("/openapi", StringComparison.OrdinalIgnoreCase))
+{
+    return Task.FromResult(AuthenticateResult.NoResult());
+}
+        
+ // 2. Keep enforcing the security header for all other API requests
+     if (!Request.Headers.ContainsKey("X-Training-User"))
         {
             return Task.FromResult(AuthenticateResult.Fail("Missing training user header."));
         }
