@@ -1,50 +1,59 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace TmsAp1.Controllers;
-
-[ApiController]
-[Route("api/enrollments")]
-public class EnrollmentsController : ControllerBase
+namespace TmsApi.Controlles
 {
-    private readonly IEnrollmentService _enrollmentService;
-
-    public EnrollmentsController(IEnrollmentService enrollmentService)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class EnrollmentsController : ControllerBase
     {
-        _enrollmentService = enrollmentService;
-    }
+        private readonly IEnrollmentService _enrollmentService;
 
-    // Part A: GET All records
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-        var enrollments = await _enrollmentService.GetAllAsync();
-        return Ok(enrollments);
-    }
+        // Dependency Injection
+        public EnrollmentsController(IEnrollmentService enrollmentService)
+        {
+            _enrollmentService = enrollmentService;
+        }
 
-    // Part A: GET a single record by ID
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(string id)
-    {
-        var record = await _enrollmentService.GetByIdAsync(id);
-        return record != null ? Ok(record) : NotFound();
-    }
+        // GET: api/enrollments
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<EnrollmentRecord>>> GetAll()
+        {
+            var records = await _enrollmentService.GetAllAsync();
+            return Ok(records);
+        }
 
-    // Part B: POST to create a new record
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateEnrollmentRequest request)
-    {
-        var record = await _enrollmentService.EnrollAsync(request.StudentId, request.CourseCode);
-        return CreatedAtAction(nameof(GetById), new { id = record.Id }, record);
-    }
+        // GET: api/enrollments/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<EnrollmentRecord>> GetById(int id)
+        {
+            var record = await _enrollmentService.GetByIdAsync(id);
+            if (record == null)
+            {
+                return NotFound();
+            }
+            return Ok(record);
+        }
 
-    // Part C: DELETE a record by ID
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(string id)
-    {
-        var deleted = await _enrollmentService.DeleteAsync(id);
-        return deleted ? NoContent() : NotFound();
+        // POST: api/enrollments
+        [HttpPost]
+        public async Task<ActionResult<EnrollmentRecord>> Enroll([FromBody] EnrollmentRecord record)
+        {
+            var result = await _enrollmentService.EnrollAsync(record);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        }
+
+        // DELETE: api/enrollments/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _enrollmentService.DeleteAsync(id);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return NoContent();
+        }
     }
 }
-
-// Request model for POST body
-public record CreateEnrollmentRequest(string StudentId, string CourseCode);
