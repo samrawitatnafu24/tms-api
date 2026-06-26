@@ -1,17 +1,23 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-
+using Microsoft.EntityFrameworkCore;
+using TmsApi.Data;
+using TmsApi;
 var builder = WebApplication.CreateBuilder(args);
 
 // =========================================================================
 // 1. SERVICE REGISTRATION (Dependency Injection)
-// =========================================================================
+//builder.Services.AddScoped<IEnrollmentService, EnrollmentService>();
 builder.Services.AddControllers();
 
 // Register the strict security services required by the runtime pipeline
 builder.Services.AddAuthentication("Training")
     .AddScheme<AuthenticationSchemeOptions, TrainingAuthHandler>("Training", null);
 builder.Services.AddAuthorization();
+
+// Register TmsDbContext scoped for incoming HTTP requests
+builder.Services.AddDbContext<TmsDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("TmsDatabase")));
 
 var app = builder.Build();
 
