@@ -9,8 +9,12 @@ public class TmsDbContext : DbContext
     {
     }
 
-    // Required tables for Exercise 1
+    // Existing 3 tables from Exercise 1
     public DbSet<Student> Students { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
+
+    // Newly added 2 tables from your Entities folder
+    public DbSet<Assessment> Assessments { get; set; }
+    public DbSet<Certificate> Certificates { get; set; }
 }

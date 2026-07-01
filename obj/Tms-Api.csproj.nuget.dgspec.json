@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\abay\\documents\\Tms-Api\\Tms-Api.csproj": {}
+    "C:\\Users\\abay\\Documents\\Tms-Api\\Tms-Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\abay\\documents\\Tms-Api\\Tms-Api.csproj": {
+    "C:\\Users\\abay\\Documents\\Tms-Api\\Tms-Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\abay\\documents\\Tms-Api\\Tms-Api.csproj",
+        "projectUniqueName": "C:\\Users\\abay\\Documents\\Tms-Api\\Tms-Api.csproj",
         "projectName": "Tms-Api",
-        "projectPath": "C:\\Users\\abay\\documents\\Tms-Api\\Tms-Api.csproj",
+        "projectPath": "C:\\Users\\abay\\Documents\\Tms-Api\\Tms-Api.csproj",
         "packagesPath": "C:\\Users\\abay\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\abay\\documents\\Tms-Api\\obj\\",
+        "outputPath": "C:\\Users\\abay\\Documents\\Tms-Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\abay\\AppData\\Roaming\\NuGet\\NuGet.Config"
