@@ -1,13 +1,16 @@
+using System.Collections.Generic;
+
 namespace TmsApi.Entities;
 
 public class Student
 {
-    public int Id { get; set; } // surrogate primary key
-    public required string RegistrationNumber { get; set; } // natural key
-    public required string Name { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string RegistrationNumber { get; set; } = string.Empty;
     public decimal GPA { get; set; }
-    public bool IsActive { get; set; } = true;
+    public bool IsActive { get; set; }
 
-    // Navigation property for many-to-many relationship
+    // Navigation Properties
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
+    public ICollection<Certificate> Certificates { get; set; } = new List<Certificate>();
 }
