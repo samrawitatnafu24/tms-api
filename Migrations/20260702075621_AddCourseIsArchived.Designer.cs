@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TmsApi.Data;
@@ -11,9 +12,11 @@ using TmsApi.Data;
 namespace Tms_Api.Migrations
 {
     [DbContext(typeof(TmsDbContext))]
-    partial class TmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260702075621_AddCourseIsArchived")]
+    partial class AddCourseIsArchived
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,8 +41,7 @@ namespace Tms_Api.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("character varying(150)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("numeric");
@@ -48,7 +50,7 @@ namespace Tms_Api.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Assessments", (string)null);
+                    b.ToTable("Assessments");
                 });
 
             modelBuilder.Entity("TmsApi.Entities.Certificate", b =>
@@ -61,8 +63,7 @@ namespace Tms_Api.Migrations
 
                     b.Property<string>("CertificateNumber")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
+                        .HasColumnType("text");
 
                     b.Property<int>("CourseId")
                         .HasColumnType("integer");
@@ -76,7 +77,7 @@ namespace Tms_Api.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Certificates", (string)null);
+                    b.ToTable("Certificates");
                 });
 
             modelBuilder.Entity("TmsApi.Entities.Course", b =>
@@ -92,22 +93,18 @@ namespace Tms_Api.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsArchived")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false);
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("TmsApi.Entities.Enrollment", b =>
@@ -127,9 +124,6 @@ namespace Tms_Api.Migrations
                     b.Property<decimal?>("Grade")
                         .HasColumnType("numeric");
 
-                    b.Property<bool>("IsArchived")
-                        .HasColumnType("boolean");
-
                     b.Property<int>("StudentId")
                         .HasColumnType("integer");
 
@@ -139,7 +133,7 @@ namespace Tms_Api.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Enrollments", (string)null);
+                    b.ToTable("Enrollments");
                 });
 
             modelBuilder.Entity("TmsApi.Entities.Student", b =>
@@ -156,33 +150,17 @@ namespace Tms_Api.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp with time zone")
-                        .HasDefaultValueSql("NOW()");
-
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RegistrationNumber")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<uint>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("xid")
-                        .HasColumnName("xmin");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("TmsApi.Entities.Assessment", b =>
@@ -220,7 +198,7 @@ namespace Tms_Api.Migrations
                     b.HasOne("TmsApi.Entities.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TmsApi.Entities.Student", "Student")

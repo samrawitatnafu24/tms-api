@@ -19,5 +19,10 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         builder.Property(c => c.Code)
             .HasMaxLength(20)
             .IsRequired();
+
+        builder.Property(c => c.IsArchived)
+            .HasDefaultValue(false)
+            .IsRequired();
+  
     }
 }

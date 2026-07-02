@@ -11,6 +11,9 @@ public class Course
     // Add this line back to satisfy your Program.cs seeding logic
     public int Capacity { get; set; }
 
+    // Required for Exercise 6 (Migration) and Exercise 9 (Bulk Archive & Soft Delete)
+    public bool IsArchived { get; set; }
+
     // Navigation Properties
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
     public ICollection<Assessment> Assessments { get; set; } = new List<Assessment>();

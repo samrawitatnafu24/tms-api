@@ -9,6 +9,8 @@ public class Student
     public string RegistrationNumber { get; set; } = string.Empty;
     public decimal GPA { get; set; }
     public bool IsActive { get; set; }
+     public uint RowVersion { get; set; }
+     public bool IsDeleted { get; set; }
 
     // Navigation Properties
     public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
